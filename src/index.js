@@ -42,7 +42,9 @@ function App() {
   const { buttons, cover } = useSrcs();
   return (
     <div className="App">
-      {cover}
+      <div className="cover">
+        {cover}
+      </div>
       <br />
       {buttons}
     </div>
