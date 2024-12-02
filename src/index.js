@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import ReactDOM from "react-dom";
 import cx from "classnames";
 import Cover from "./Cover";
@@ -13,6 +13,14 @@ const srcs = [
 
 const useSrcs = () => {
   const [selectedSrc, setSrc] = useState(srcs[0]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', e => {
+      if(e.key.includes("Arrow"))
+        setSrc(srcs[Math.floor(Math.random()*3)])
+    });
+  }, []);
+
   return {
     buttons: srcs.map((src, i) => (
       <button
@@ -23,8 +31,7 @@ const useSrcs = () => {
         image {i + 1}
       </button>
     )),
-    // force to re-render
-    // this is just example
+
     cover: srcs.map(src =>
       src === selectedSrc ? <Cover key={src} src={selectedSrc} /> : null
     )
